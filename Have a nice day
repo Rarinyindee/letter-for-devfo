@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e9eedf">
+<title>ถึงเดฟโฟคิง🐶</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #edf0e3;
+  --green: #cbd9b5;
+  --dark: #344a35;
+  --paper: #fffdf5;
+  --pink: #e9b8b0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background:
+    radial-gradient(ellipse at 15% 15%, #f8f4d8, transparent 45%),
+    radial-gradient(ellipse at 85% 80%, #d5e1c3, transparent 45%),
+    var(--bg);
+  color: var(--dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px 16px;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+  max-width: 460px;
+  min-height: 650px;
+  text-align: center;
+  position: relative;
+  padding: 18px 8px 35px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  opacity: .7;
+}
+
+h1 {
+  font-size: clamp(26px, 7vw, 36px);
+  margin: 42px 0 16px;
+}
+
+.subtitle {
+  font-size: 14px;
+  opacity: .7;
+  margin-bottom: 45px;
+}
+
+.envelope-area {
+  width: 100%;
+  max-width: 340px;
+  height: 235px;
+  margin: 0 auto;
+  position: relative;
+  perspective: 900px;
+}
+
+.envelope {
+  position: absolute;
+  inset: 20px 0 0;
+  height: 200px;
+  background: var(--green);
+  border-radius: 5px 5px 15px 15px;
+  box-shadow: 0 22px 35px #6d7d5528;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #dbe5c9;
+  clip-path: polygon(0 0, 50% 55%, 100% 0);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.envelope::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #c3d2ac;
+  clip-path: polygon(0 100%, 0 0, 50% 53%, 100% 0, 100% 100%);
+  border-radius: 5px 5px 15px 15px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  background: #b9cba0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform .8s ease;
+  z-index: 5;
+}
+
+.seal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -15%);
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #fffdf4;
+  border: 4px solid #f2e7d1;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  z-index: 6;
+  box-shadow: 0 4px 12px #52634420;
+  transition: opacity .3s;
+}
+
+.open-button {
+  margin-top: 24px;
+  border: 0;
+  border-radius: 30px;
+  padding: 13px 28px;
+  background: #71885d;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 15px #52634420;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.open-button:active {
+  transform: scale(.97);
+}
+
+.letter {
+  display: none;
+  position: relative;
+  background: var(--paper);
+  border: 2px solid #e9dba9;
+  border-radius: 25px;
+  padding: 28px 22px;
+  margin: 0 auto;
+  width: 100%;
+  box-shadow: 0 18px 45px #67765018;
+  animation: appear .9s ease both;
+}
+
+.letter h2 {
+  font-size: 25px;
+  margin: 0 0 20px;
+}
+
+.letter p {
+  font-size: 17px;
+  line-height: 2;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  text-align: left;
+  margin: 0;
+}
+
+.signature {
+  text-align: right !important;
+  margin-top: 25px !important;
+  color: #8b7963;
+}
+
+.kitty {
+  font-size: 56px;
+  margin: 14px 0;
+  animation: float 3s ease-in-out infinite;
+}
+
+.secret {
+  font-size: 12px;
+  opacity: .6;
+  margin-top: 24px;
+}
+
+.edit-area {
+  display: none;
+  margin-top: 24px;
+  text-align: left;
+}
+
+.edit-area label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 13px;
+}
+
+textarea, input[type="color"] {
+  width: 100%;
+  border: 1px solid #d4ddc6;
+  border-radius: 12px;
+  padding: 12px;
+  font: inherit;
+  background: white;
+  color: #344a35;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.small-button {
+  border: 1px solid #b7c7a4;
+  background: #f4f5e9;
+  color: #344a35;
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin: 8px 5px 0 0;
+  cursor: pointer;
+}
+
+body.is-open .envelope-area,
+body.is-open .subtitle,
+body.is-open .open-button {
+  display: none;
+}
+
+body.is-open h1 {
+  margin-top: 20px;
+}
+
+body.is-open .letter {
+  display: block;
+}
+
+body.is-open .edit-area {
+  display: block;
+}
+
+body.is-open .flap {
+  transform: rotateX(180deg);
+}
+
+body.is-open .seal {
+  opacity: 0;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-9px) rotate(4deg); }
+}
+
+@media (max-width: 380px) {
+  main { min-height: auto; }
+  .letter { padding: 24px 17px; }
+  .letter p { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<main>
+  <div class="eyebrow">A LITTLE LETTER · FOR YOU</div>
+
+  <h1>ถึงเดฟโฟคิง🐶</h1>
+  <div class="subtitle">มีอะไรเล็ก ๆ อยากให้แกได้อ่านนะ</div>
+
+  <div class="envelope-area" id="envelopeArea">
+    <div class="envelope" id="envelope" role="button"
+      tabindex="0" aria-label="กดเพื่อเปิดซองจดหมาย">
+      <div class="flap"></div>
+      <div class="seal">🐰</div>
+    </div>
+  </div>
+
+  <button class="open-button" id="openButton">
+    แตะเพื่อเปิดจดหมาย ♡
+  </button>
+
+  <article class="letter" id="letter">
+    <div style="font-size:12px;letter-spacing:2px;opacity:.65">
+      A LITTLE LETTER FOR YOU
+    </div>
+
+    <div class="kitty" aria-label="กระต่ายลอย">🐱💗</div>
+
+    <h2>ถึงแก ♡</h2>
+
+    <p id="letterText">ไม่รู้ว่าวันนี้เธอเจออะไรมาบ้าง เหนื่อยไหม
+
+แต่ชั้นขอให้มีเรื่องเล็ก ๆ ที่ทำให้แกยิ้มได้นะ</p>
+
+    <p class="signature" id="signature">จาก ชั้นเอง 🐰</p>
+
+    <div class="secret">ขอบคุณที่ได้รู้จักกันนะ ☁️</div>
+  </article>
+
+  <section class="edit-area">
+    <button class="small-button" id="editButton">
+      ✎ ปรับแต่งจดหมาย
+    </button>
+    <button class="small-button" id="backButton">
+      ↩ ปิดจดหมาย
+    </button>
+
+    <div id="editor" hidden>
+      <label for="messageInput">ข้อความจดหมาย</label>
+      <textarea id="messageInput">ไม่รู้ว่าวันนี้เธอเจออะไรมาบ้าง เหนื่อยไหม
+
+แต่ชั้นขอให้มีเรื่องเล็ก ๆ ที่ทำให้แกยิ้มได้นะ</textarea>
+
+      <label for="signInput">ข้อความลงท้าย</label>
+      <input id="signInput" value="จาก ชั้นเอง 🐰">
+
+      <label for="bgColor">สีพื้นหลัง</label>
+      <input id="bgColor" type="color" value="#edf0e3">
+
+      <label for="paperColor">สีกระดาษจดหมาย</label>
+      <input id="paperColor" type="color" value="#fffdf5">
+
+      <button class="small-button" id="applyButton">
+        บันทึกการแก้ไขบนหน้านี้
+      </button>
+    </div>
+  </section>
+</main>
+
+<script>
+const openButton = document.getElementById("openButton");
+const envelope = document.getElementById("envelope");
+const envelopeArea = document.getElementById("envelopeArea");
+const backButton = document.getElementById("backButton");
+const editButton = document.getElementById("editButton");
+const editor = document.getElementById("editor");
+const applyButton = document.getElementById("applyButton");
+
+function openLetter() {
+  document.body.classList.add("is-open");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function closeLetter() {
+  document.body.classList.remove("is-open");
+  editor.hidden = true;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+openButton.addEventListener("click", openLetter);
+envelope.addEventListener("click", openLetter);
+envelopeArea.addEventListener("keydown", function(event) {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openLetter();
+  }
+});
+
+backButton.addEventListener("click", closeLetter);
+
+editButton.addEventListener("click", function() {
+  editor.hidden = !editor.hidden;
+});
+
+applyButton.addEventListener("click", function() {
+  document.getElementById("letterText").textContent =
+    document.getElementById("messageInput").value;
+
+  document.getElementById("signature").textContent =
+    document.getElementById("signInput").value;
+
+  document.body.style.background =
+    document.getElementById("bgColor").value;
+
+  document.getElementById("letter").style.background =
+    document.getElementById("paperColor").value;
+
+  alert("เปลี่ยนข้อความและสีบนหน้านี้แล้ว ♡");
+});
+</script>
+</body>
+</html>
